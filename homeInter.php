@@ -17,7 +17,7 @@
                  <button type="submit" name="submit" value="send">Change Temperature</button>
                  </form>
 			<p><strong>
-			    <?php 			      //PHP to write user's desired temperature to file to be read by tempLog.php     
+			    <?php 			      //PHP to write user's desired temperature to file to be read by tempLog.py     
 			       $temp= $_POST['temp'];
                                $tempFile = fopen('/usr/local/bin/temp.txt','w');
 			       fwrite($tempFile,$temp);
