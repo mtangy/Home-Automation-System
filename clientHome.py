@@ -20,7 +20,7 @@ hcSr = DistanceSensor(echo=13, trigger=7, threshold_distance=0.1)  # threshold d
 while !(stopButton.when_pressed):
 
     hcSr.wait_for_out_of_range()      #pause script until the change in distance exceeds .328in indicating door is open 
-	c.send('door open')               #send packet indicating door is open
+    c.send('door open')               #send packet indicating door is open
     hcSr.wait_for_in_range()          #pause script until distance is back in range indicating door is closed
     c.send('door closed')	           #send packet indicating door is closed
     
