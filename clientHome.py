@@ -7,9 +7,7 @@ import socket                # Import socket module
 
 s = socket.socket()          # Create a socket object for communication
 
-#host = socket.gethostname() # Get local machine name
-
-port = 4                     # Reserve a port for your service.
+port = 4                     #Reserved a port for communcation.
 serverIP = '192.168.1.108'   #static local IP I assigned for my Beaglebone that is acting as a server
 s.connect((serverIP, port))  #establish connection to socket on server side 
 
