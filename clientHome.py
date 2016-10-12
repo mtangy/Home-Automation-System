@@ -21,8 +21,10 @@ while !(stopButton.when_pressed):
 
     hcSr.wait_for_out_of_range()      #pause script until the change in distance exceeds .328in indicating door is open 
     c.send('door open')               #send packet indicating door is open
+    time(2)                           #delay to to allow door motion to finish
     hcSr.wait_for_in_range()          #pause script until distance is back in range indicating door is closed
-    c.send('door closed')	           #send packet indicating door is closed
+    c.send('door closed')	            #send packet indicating door is closed
+    time(2)
     
 s.close                  # Close socket when finished 
 
