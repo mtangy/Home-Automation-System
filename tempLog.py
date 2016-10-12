@@ -8,7 +8,7 @@ import Home_Automation
 def insertTemp(temp,curs,db):
     with db:    
         curs.execute ("INSERT INTO temps values(CURRENT_DATE(),CURTIME(),"+str(temp)+")")
-	    db.commit()
+	db.commit()
         ##print temp,"committed"
 
 def printData():
