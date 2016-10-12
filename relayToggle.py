@@ -12,12 +12,12 @@ import Adafruit_BBIO.GPIO as GPIO
 if not Home_Automation.checkACon():
     Home_Automation.turnACon()
     print "AC ON"
-    while True:
-        pass
+    while True:               #infinite loop to keep pin low until next instance of process executes 
+        pass        
         	    
 else:
     Home_Automation.turnACoff()
     print "AC OFF"
-    while True:
+    while True:               #infinite loop to keep pin high until next instance of process executes 
         pass
         
