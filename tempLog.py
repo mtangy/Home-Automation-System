@@ -2,29 +2,8 @@
 #!/usr/bin/env python
 
 import MySQLdb
-import time
-import Adafruit_BBIO.ADC as ADC
-import Adafruit_BBIO.ADC as GPIO
+import Home_Automation
 
-pin = "P9_40"
-
-ADC.setup()
-GPIO.setup(pin, GPIO.OUT)
-
-def read_temp_value():
-    f = read_sensor()
-    c = (f - 32) * 5 /9
-    F = "%3.1f" % f
-
-    return F
-
-def read_sensor():
-    ain_value = ADC.read(pin)
-    ain_voltage = 1.8 * ain_value
-    sensor_output_voltage = ain_voltage * 2
-    f = sensor_output_voltage * 100
-	
-    return f
 
 def insertTemp(temp,curs,db):
     with db:    
@@ -49,20 +28,13 @@ if __name__ == '__main__':
     iter = 0
     while True:
         temp = 0.0;
-        temp = read_temp_value()
-		##print temp
+        temp = Home_Automation.getCurrentTemp()
         insertTemp(temp,curs,db)
-		t = open('/usr/local/bin/temp.txt', 'r')
-		utemp = int(t.read().strip())
+	t = open('/usr/local/bin/temp.txt', 'r')
+	utemp = int(t.read().strip())
         t.close()
         if utemp > temp:
-            GPIO.output(pin, GPIO.HIGH)
-            Rs = open('/usr/local/bin/relayState.txt', 'r+')
-            Rs.seek(0)
-            Rs.write("off")
-            Rs.close()           		
-        time.sleep(1200)
+            Home_Automation.turnACoff()
+        time.sleep(1000)
     
-    ##printData()
-    ##curs.execute ("SELECT * FROM temps")
-    ##print curs.fetchall()	
+
